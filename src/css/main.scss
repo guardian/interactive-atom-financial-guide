@@ -7,9 +7,19 @@
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 
+$mq-breakpoints: (mobile: 320px,
+  mobileMedium: 375px,
+  mobileLandscape: 480px,
+  phablet: 660px,
+  tablet: 740px,
+  desktop: 980px,
+  leftCol: 1140px,
+  wide: 1300px);
+
+
 .element-atom,
 .interactive-atom {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 .l-footer {
@@ -25,12 +35,12 @@
   }
 }
 
-#canvas1{
-	position:absolute;
-	width:100%;
-	height:100%;
-	background-color:#fff4f2;
-	filter: blur(4px);
+#canvas1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff4f2;
+  filter: blur(4px);
   opacity: 0.8;
 }
 
@@ -38,10 +48,18 @@
   background-color: #fff4f2;
   height: auto;
   padding-bottom: 20px;
+  margin-bottom: 20px;
+
 
   @include mq($from: desktop) {
-    height: 80vh;
+    margin-bottom: 80px;
+    height: 100vh;
     padding-bottom: 0;
+  }
+
+  @include mq(leftCol) {
+    margin-bottom: 50px;
+    height: 85vh;
   }
 }
 
@@ -49,9 +67,11 @@
   0% {
     transform: rotate(-2deg);
   }
+
   50% {
     transform: rotate(2deg);
   }
+
   100% {
     transform: rotate(-2deg);
   }
@@ -72,24 +92,40 @@
 
 .money-left {
   flex-basis: 100%;
-  width: 100%;
-  padding-left: 20px;
+  width: calc(100vw - 10px);
+  padding-left: 10px;
   height: 80vh;
   background-color: #fff4f2;
+
+  @include mq(phablet) {
+    width: calc(100vw - 20px);
+    padding-left: 20px;
+  }
 
   @include mq($from: desktop) {
     flex-basis: 50%;
     width: 50%;
-    border-left: 1px solid #121212;
+    // border-left: 1px solid #121212;
+    padding-bottom: 140px;
+    padding-left: 35px;
+  }
+
+  @include mq(leftCol) {
+    padding-bottom: 45px;
   }
 
   h1 {
     font-family: "Guardian Titlepiece";
-    font-size: 73px;
+    font-size: 60px;
     line-height: 0.9;
     border-bottom: 1px solid #121212;
-    padding-bottom: 60px;
+    padding-bottom: 40px;
     margin-top: 10px;
+
+    @include mq(mobileMedium) {
+      font-size: 70px;
+      padding-bottom: 60px;
+    }
 
     @include mq($from: desktop) {
       font-size: 100px;
@@ -108,6 +144,9 @@
     font-weight: 200;
     line-height: 1.1;
     padding-right: 30px;
+    width: 90%;
+
+    // margin-left: 13px;
 
     @include mq($from: desktop) {
       font-size: 40px;
@@ -120,6 +159,7 @@
 .money-right {
   flex-basis: 100%;
   width: 100%;
+
   @include mq($from: desktop) {
     flex-basis: 50%;
     width: 50%;
@@ -132,8 +172,16 @@
     margin-left: -10px;
 
     @include mq($from: desktop) {
-      width: 55%;
+      width: 70%;
       height: auto;
+    }
+
+    @include mq(leftCol) {
+      width: 65%;
+    }
+
+    @include mq(wide) {
+      width: 55%;
     }
   }
 }
@@ -147,8 +195,17 @@
 }
 
 .byline {
+  width: 90%;
   margin-top: 10px;
   color: #ff4e36;
+
+  @include mq(mobileMedium) {
+    width: 80%;
+  }
+
+  @include mq(phablet) {
+    width: 100%;
+  }
 
   a {
     color: #ff4e36;
@@ -157,12 +214,18 @@
 
 
 //This styles the copy on composer
-.element-atom + script + p {
+.element-atom+script+p {
   padding: 0 0;
-  max-width: 600px;
+  max-width: 640px;
   position: relative;
   padding-left: 10px;
+  padding-right: 10px;
   margin-top: 6px;
+
+  @include mq(phablet) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   &:first-of-type:first-letter {
     font-size: 125px;
@@ -175,7 +238,7 @@
     margin-right: 5px;
     margin-top: 9px;
     float: left;
-    color:#ff4e36;
+    color: #ff4e36;
   }
 
   @include mq($from: desktop) {
@@ -185,7 +248,7 @@
 
   @include mq($from: wide) {
     margin-left: 11.6rem;
-    max-width: 600px;
+    max-width: 640px;
   }
 
   &:before {
@@ -197,18 +260,24 @@
     background-color: #121212;
     content: '';
     display: block;
+
+    @include mq(desktop) {
+      top: 4px;
+    }
   }
 
-  &:after {
-    position: absolute;
-    top: -40px;
-    bottom: 0;
-    right: -48px;
-    width: 1px;
-    background-color: #121212;
-    content: '';
-    display: block;
-  }
+  // @include mq(phablet) {
+  //   &:after {
+  //     position: absolute;
+  //     top: -40px;
+  //     bottom: 0;
+  //     right: -48px;
+  //     width: 1px;
+  //     background-color: #121212;
+  //     content: '';
+  //     display: block;
+  //   }
+  // }
 }
 
 .element-image {
@@ -222,22 +291,24 @@
   @include mq($from: desktop) {
     margin-left: 2.4rem !important;
     max-width: 522px !important;
+    width: 17.75rem;
   }
 
   @include mq($from: wide) {
     margin-left: 11.6rem !important;
-    max-width: 600px !important;
+    max-width: 640px !important;
   }
 
   img {
-    width: 100%;
+    width: 90%;
+    margin-left: 5%;
     height: auto;
   }
 }
 
-.element-atom + script + p + figure + p{
+.element-atom+script+p+figure+p {
   padding: 0 0;
-  max-width: 600px;
+  max-width: 640px;
   position: relative;
   padding-left: 10px;
 
@@ -248,7 +319,7 @@
 
   @include mq($from: wide) {
     margin-left: 11.6rem;
-    max-width: 600px;
+    max-width: 640px;
   }
 
   &:before {
@@ -262,44 +333,70 @@
     display: block;
   }
 
-  &:after {
-    position: absolute;
-    top: -40px;
-    bottom: 0;
-    right: -48px;
-    width: 1px;
-    background-color: #121212;
-    content: '';
-    display: block;
+  // @include mq(phablet) {
+  //   &:after {
+  //     position: absolute;
+  //     top: -40px;
+  //     bottom: 0;
+  //     right: -48px;
+  //     width: 1px;
+  //     background-color: #121212;
+  //     content: '';
+  //     display: block;
+  //   }
+  // }
+}
+
+ul {
+  margin-left: 15px;
+
+  @include mq(phablet) {
+    margin-left: 20px;
   }
 }
 
-p + h2, figure + script + h2, h2 + h2, ul+h2, .element-image + h2 {
+p+h2,
+figure+script+h2,
+h2+h2,
+ul+h2,
+.element-image+h2 {
   font-family: "Guardian Headline Full";
+  line-height: 1.1;
   padding-left: 10px;
+  padding-right: 10px;
   position: relative;
   color: #ff4e36;
+  margin-left: 13px;
 
-  &:before {
-    position: absolute;
-    top: -40px;
-    bottom: 0;
-    left: -3px;
-    width: 1px;
-    background-color: #121212;
-    content: '';
-    display: block;
-  }
+  @include mq(phablet) {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 18px;
 
-  &:after {
-    position: absolute;
-    top: -40px;
-    bottom: 0;
-    right: -48px;
-    width: 1px;
-    background-color: #121212;
-    content: '';
-    display: block;
+    @include mq(desktop) {
+      &:before {
+        position: absolute;
+        top: -40px;
+        bottom: 0;
+        left: -3px;
+        width: 1px;
+        background-color: #121212;
+        content: '';
+        display: block;
+      }
+
+    }
+
+    // &:after {
+    //   position: absolute;
+    //   top: -40px;
+    //   bottom: 0;
+    //   right: -48px;
+    //   width: 1px;
+    //   background-color: #121212;
+    //   content: '';
+    //   display: block;
+    // }
   }
 
   @include mq($from: desktop) {
@@ -310,15 +407,16 @@ p + h2, figure + script + h2, h2 + h2, ul+h2, .element-image + h2 {
 
   @include mq($from: wide) {
     margin-left: 11.6rem;
-    max-width: 600px;
+    max-width: 640px;
   }
 }
 
-p + h2, ul + h2 {
+p+h2,
+ul+h2 {
   border-top: 1px solid #121212;
   line-height: 1;
   margin-top: 20px;
-  max-width: 600px;
+  max-width: 640px;
 
   @include mq($from: desktop) {
     margin-top: 0;
@@ -326,12 +424,16 @@ p + h2, ul + h2 {
   }
 
   @include mq($from: wide) {
-    max-width: 600px;
+    max-width: 640px;
   }
 }
 
-h2 + ul {
+h2+ul {
   list-style: none;
+
+  @include mq(phablet) {
+    padding-left: 10px;
+  }
 
   li {
     margin-top: 10px;
@@ -350,23 +452,31 @@ h2 + ul {
   }
 }
 
-h2 + p {
+h2+p {
   padding-top: 20px;
 }
 
-h2 + h2 {
+h2+h2 {
   font-family: "Guardian Headline Full";
   font-weight: 200;
   line-height: 1;
   margin-bottom: 10px;
-  max-width: 600px;
+  max-width: 640px;
 }
 
-p, p+ul, h2+ul {
+p,
+p+ul,
+h2+ul {
   padding: 0 0;
-  max-width: 600px;
+  max-width: 640px;
   padding-left: 10px;
+  padding-right: 10px;
   position: relative;
+
+  @include mq(phablet) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   @include mq($from: desktop) {
     margin-left: 2.4rem;
@@ -376,30 +486,36 @@ p, p+ul, h2+ul {
 
   @include mq($from: wide) {
     margin-left: 11.6rem;
-    max-width: 600px;
+    max-width: 640px;
   }
 
   &:before {
     position: absolute;
-    top: -40px;
+    top: -65px;
     bottom: 0;
     left: -3px;
     width: 1px;
     background-color: #121212;
     content: '';
     display: block;
+
+    @include mq(mobileMedium) {
+      top: -41px;
+    }
   }
 
-  &:after {
-    position: absolute;
-    top: -40px;
-    bottom: 0;
-    right: -48px;
-    width: 1px;
-    background-color: #121212;
-    content: '';
-    display: block;
-  }
+  // @include mq(phablet) {
+  //   &:after {
+  //     position: absolute;
+  //     top: -40px;
+  //     bottom: 0;
+  //     right: -48px;
+  //     width: 1px;
+  //     background-color: #121212;
+  //     content: '';
+  //     display: block;
+  //   }
+  // }
 
   a {
     color: inherit;
@@ -414,7 +530,8 @@ p, p+ul, h2+ul {
   }
 }
 
-.ios, .android {
+.ios,
+.android {
 
   .meta__extras {
     display: none;
@@ -437,6 +554,7 @@ p, p+ul, h2+ul {
     h1 {
       margin: 0;
     }
+
     h3 {
       margin: 0;
     }
@@ -446,15 +564,45 @@ p, p+ul, h2+ul {
     margin: 0;
   }
 
-  p + h2 {
+  p+h2 {
     margin: 0;
   }
 
-  h2 + h2 {
+  h2+h2 {
     margin: 0;
   }
 
-  h2 + p {
+  h2+p {
     padding-top: 20px;
+  }
+}
+
+
+figcaption {
+  margin-left: 10px;
+  font-family: "Guardian Text Sans Web",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "Lucida Grande",
+    sans-serif;
+  color: #767676;
+  font-size: 15px;
+  margin-top: 10px;
+
+  @include mq(tablet) {
+    margin-left: 40px;
+
+  }
+
+  @include mq(desktop) {
+    margin-left: 20px;
+  }
+}
+
+
+figure.element.element--supporting {
+  @include mq(desktop) {
+    width: 17.75rem;
   }
 }
