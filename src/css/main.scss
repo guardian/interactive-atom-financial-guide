@@ -11,3 +11,450 @@
 .interactive-atom {
     margin: 0 !important;
 }
+
+.l-footer {
+  display: block !important;
+}
+
+.flex {
+  flex-direction: column-reverse;
+  display: flex;
+
+  @include mq($from: desktop) {
+    flex-direction: row;
+  }
+}
+
+#canvas1{
+	position:absolute;
+	width:100%;
+	height:100%;
+	background-color:#fff4f2;
+	filter: blur(4px);
+  opacity: 0.8;
+}
+
+.money-top {
+  background-color: #fff4f2;
+  height: auto;
+  padding-bottom: 20px;
+
+  @include mq($from: desktop) {
+    height: 80vh;
+    padding-bottom: 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(-2deg);
+  }
+}
+
+.rotate {
+  animation-name: rotate;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+
+  &.slow {
+    animation-duration: 5s;
+  }
+}
+
+.money-left {
+  flex-basis: 100%;
+  width: 100%;
+  padding-left: 20px;
+  height: 80vh;
+  background-color: #fff4f2;
+
+  @include mq($from: desktop) {
+    flex-basis: 50%;
+    width: 50%;
+    border-left: 1px solid #121212;
+  }
+
+  h1 {
+    font-family: "Guardian Titlepiece";
+    font-size: 73px;
+    line-height: 0.9;
+    border-bottom: 1px solid #121212;
+    padding-bottom: 60px;
+    margin-top: 10px;
+
+    @include mq($from: desktop) {
+      font-size: 100px;
+      line-height: 0.9;
+    }
+
+    span {
+      color: #ff4e36;
+      display: block;
+    }
+  }
+
+  h2 {
+    font-family: $f-serif-headline;
+    font-size: 26px;
+    font-weight: 200;
+    line-height: 1.1;
+    padding-right: 30px;
+
+    @include mq($from: desktop) {
+      font-size: 40px;
+      font-weight: 200;
+      line-height: 1.1;
+    }
+  }
+}
+
+.money-right {
+  flex-basis: 100%;
+  width: 100%;
+  @include mq($from: desktop) {
+    flex-basis: 50%;
+    width: 50%;
+    border-left: 1px solid #121212;
+  }
+
+  img {
+    width: 60%;
+    height: auto;
+    margin-left: -10px;
+
+    @include mq($from: desktop) {
+      width: 55%;
+      height: auto;
+    }
+  }
+}
+
+.image-top {
+  margin-bottom: -10px;
+
+  @include mq($from: desktop) {
+    margin-bottom: -20px;
+  }
+}
+
+.byline {
+  margin-top: 10px;
+  color: #ff4e36;
+
+  a {
+    color: #ff4e36;
+  }
+}
+
+
+//This styles the copy on composer
+.element-atom + script + p {
+  padding: 0 0;
+  max-width: 600px;
+  position: relative;
+  padding-left: 10px;
+  margin-top: 6px;
+
+  &:first-of-type:first-letter {
+    font-size: 125px;
+    font-weight: 200;
+    font-family: "Guardian Headline Full";
+    line-height: 80px;
+    margin-right: -8px;
+    float: left;
+    line-height: 80px;
+    margin-right: 5px;
+    margin-top: 9px;
+    float: left;
+    color:#ff4e36;
+  }
+
+  @include mq($from: desktop) {
+    margin-left: 2.4rem;
+    max-width: 522px;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 11.6rem;
+    max-width: 600px;
+  }
+
+  &:before {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    left: -3px;
+    width: 1px;
+    background-color: #121212;
+    content: '';
+    display: block;
+  }
+
+  &:after {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    right: -48px;
+    width: 1px;
+    background-color: #121212;
+    content: '';
+    display: block;
+  }
+}
+
+.element-image {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.element--supporting {
+  @include mq($from: desktop) {
+    margin-left: 2.4rem !important;
+    max-width: 522px !important;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 11.6rem !important;
+    max-width: 600px !important;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.element-atom + script + p + figure + p{
+  padding: 0 0;
+  max-width: 600px;
+  position: relative;
+  padding-left: 10px;
+
+  @include mq($from: desktop) {
+    margin-left: 2.4rem;
+    max-width: 522px;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 11.6rem;
+    max-width: 600px;
+  }
+
+  &:before {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    left: -3px;
+    width: 1px;
+    background-color: #121212;
+    content: '';
+    display: block;
+  }
+
+  &:after {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    right: -48px;
+    width: 1px;
+    background-color: #121212;
+    content: '';
+    display: block;
+  }
+}
+
+p + h2, figure + script + h2, h2 + h2, ul+h2, .element-image + h2 {
+  font-family: "Guardian Headline Full";
+  padding-left: 10px;
+  position: relative;
+  color: #ff4e36;
+
+  &:before {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    left: -3px;
+    width: 1px;
+    background-color: #121212;
+    content: '';
+    display: block;
+  }
+
+  &:after {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    right: -48px;
+    width: 1px;
+    background-color: #121212;
+    content: '';
+    display: block;
+  }
+
+  @include mq($from: desktop) {
+    margin-left: 2.4rem;
+    max-width: 522px;
+    font-size: 34px;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 11.6rem;
+    max-width: 600px;
+  }
+}
+
+p + h2, ul + h2 {
+  border-top: 1px solid #121212;
+  line-height: 1;
+  margin-top: 20px;
+  max-width: 600px;
+
+  @include mq($from: desktop) {
+    margin-top: 0;
+    max-width: 522px;
+  }
+
+  @include mq($from: wide) {
+    max-width: 600px;
+  }
+}
+
+h2 + ul {
+  list-style: none;
+
+  li {
+    margin-top: 10px;
+
+    &:before {
+      float: left;
+      height: 20px;
+      width: 20px;
+      background-color: #ff4e36;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      margin-top: 3px;
+      margin-right: 5px;
+    }
+  }
+}
+
+h2 + p {
+  padding-top: 20px;
+}
+
+h2 + h2 {
+  font-family: "Guardian Headline Full";
+  font-weight: 200;
+  line-height: 1;
+  margin-bottom: 10px;
+  max-width: 600px;
+}
+
+p, p+ul, h2+ul {
+  padding: 0 0;
+  max-width: 600px;
+  padding-left: 10px;
+  position: relative;
+
+  @include mq($from: desktop) {
+    margin-left: 2.4rem;
+    max-width: 522px;
+    max-width: 522px;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 11.6rem;
+    max-width: 600px;
+  }
+
+  &:before {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    left: -3px;
+    width: 1px;
+    background-color: #121212;
+    content: '';
+    display: block;
+  }
+
+  &:after {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    right: -48px;
+    width: 1px;
+    background-color: #121212;
+    content: '';
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid #dcdcdc;
+
+    &:hover {
+      border-bottom: none;
+      text-decoration: none;
+      background-color: #FFD600;
+    }
+  }
+}
+
+.ios, .android {
+
+  .meta__extras {
+    display: none;
+  }
+
+  .byline-wrapper {
+    padding-bottom: 10px;
+
+    h2 {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  .days-standfirst {
+    h1 {
+      margin: 0;
+    }
+    h3 {
+      margin: 0;
+    }
+  }
+
+  figure+script+h2 {
+    margin: 0;
+  }
+
+  p + h2 {
+    margin: 0;
+  }
+
+  h2 + h2 {
+    margin: 0;
+  }
+
+  h2 + p {
+    padding-top: 20px;
+  }
+}
