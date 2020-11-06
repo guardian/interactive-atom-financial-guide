@@ -7,19 +7,24 @@
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 
-$mq-breakpoints: (mobile: 320px,
+$mq-breakpoints: (
+  mobile: 320px,
   mobileMedium: 375px,
   mobileLandscape: 480px,
   phablet: 660px,
   tablet: 740px,
   desktop: 980px,
   leftCol: 1140px,
-  wide: 1300px);
-
+  wide: 1300px,
+);
 
 .element-atom,
 .interactive-atom {
   margin: 0 !important;
+}
+
+.interactive-wrapper {
+  overflow: hidden;
 }
 
 .l-footer {
@@ -39,27 +44,31 @@ $mq-breakpoints: (mobile: 320px,
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #fff4f2;
+  background-color: #fbf6ef;
   filter: blur(4px);
   opacity: 0.8;
 }
 
 .money-top {
-  background-color: #fff4f2;
-  height: auto;
+  background-color: #fbf6ef;
+  // height: 80vh;
   padding-bottom: 20px;
-  margin-bottom: 20px;
+  // margin-bottom: 60px;
 
+  // overflow-x: hidden;
+  min-height: 90vh;
 
   @include mq($from: desktop) {
-    margin-bottom: 80px;
-    height: 100vh;
+    // margin-bottom: 80px;
     padding-bottom: 0;
+    min-height: 70vh;
   }
 
   @include mq(leftCol) {
-    margin-bottom: 50px;
-    height: 85vh;
+    // margin-bottom: 50px;
+  }
+  @include mq(wide) {
+    min-height: 60vh;
   }
 }
 
@@ -94,8 +103,8 @@ $mq-breakpoints: (mobile: 320px,
   flex-basis: 100%;
   width: calc(100vw - 10px);
   padding-left: 10px;
-  height: 80vh;
-  background-color: #fff4f2;
+  height: auto;
+  background-color: #fbf6ef;
 
   @include mq(phablet) {
     width: calc(100vw - 20px);
@@ -107,33 +116,57 @@ $mq-breakpoints: (mobile: 320px,
     width: 50%;
     // border-left: 1px solid #121212;
     padding-bottom: 140px;
-    padding-left: 35px;
+    padding-left: 20px;
   }
 
-  @include mq(leftCol) {
-    padding-bottom: 45px;
+  &:before {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background-color: #121212;
+    content: "";
+    display: none;
+
+    @include mq(desktop) {
+      top: -12px;
+      display: block;
+    }
   }
 
   h1 {
     font-family: "Guardian Titlepiece";
     font-size: 60px;
+        font-size: 46px;
     line-height: 0.9;
     border-bottom: 1px solid #121212;
     padding-bottom: 40px;
     margin-top: 10px;
 
     @include mq(mobileMedium) {
-      font-size: 70px;
+      font-size: 52px;
       padding-bottom: 60px;
+    }
+    @include mq(mobileLandscape){
+      font-size:60px;
     }
 
     @include mq($from: desktop) {
-      font-size: 100px;
+          font-size: 72px;
       line-height: 0.9;
     }
 
+    @include mq(leftCol) {
+      font-size: 80px;
+    }
+
+    @include mq(wide){
+      font-size:90px;
+    }
+
     span {
-      color: #ff4e36;
+      color: #cc0a11;
       display: block;
     }
   }
@@ -186,6 +219,52 @@ $mq-breakpoints: (mobile: 320px,
   }
 }
 
+.header-pic {
+  top: 54vh;
+  position: absolute;
+  width: 380px;
+  right: 50%;
+  transform: translateX(50%);
+
+  @include mq(mobileMedium) {
+    width: 410px;
+  }
+
+  @include mq(mobileLandscape) {
+    top: 56.6vh;
+    width: 503px;
+  }
+
+  @include mq(phablet) {
+    top: 49.6vh;
+    width: 540px;
+  }
+
+  @include mq(tablet) {
+    top: 48vh;
+    width: 730px;
+  }
+
+  @include mq(desktop) {
+    top: 48vh;
+    width: 600px;
+    right: -50px;
+    transform: none;
+  }
+
+  @include mq(leftCol) {
+    top: 36vh;
+    width: 670px;
+    right: -50px;
+  }
+
+  @include mq(wide) {
+    top: 24vh;
+    width: 730px;
+    right: -60px;
+  }
+}
+
 .image-top {
   margin-bottom: -10px;
 
@@ -197,7 +276,7 @@ $mq-breakpoints: (mobile: 320px,
 .byline {
   width: 90%;
   margin-top: 10px;
-  color: #ff4e36;
+  color: #cc0a11;
 
   @include mq(mobileMedium) {
     width: 80%;
@@ -208,314 +287,87 @@ $mq-breakpoints: (mobile: 320px,
   }
 
   a {
-    color: #ff4e36;
+    color: #cc0a11;
   }
 }
 
+.body-content {
+  h2,
+  p {
+    max-width: 620px;
+    &:before {
+      position: absolute;
+      top: -40px;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      background-color: #121212;
+      content: "";
+      display: none;
 
-//This styles the copy on composer
-.element-atom+script+p {
-  padding: 0 0;
-  max-width: 640px;
-  position: relative;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 6px;
-
-  @include mq(phablet) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  &:first-of-type:first-letter {
-    font-size: 125px;
-    font-weight: 200;
-    font-family: "Guardian Headline Full";
-    line-height: 80px;
-    margin-right: -8px;
-    float: left;
-    line-height: 80px;
-    margin-right: 5px;
-    margin-top: 9px;
-    float: left;
-    color: #ff4e36;
-  }
-
-  @include mq($from: desktop) {
-    margin-left: 2.4rem;
-    max-width: 522px;
-  }
-
-  @include mq($from: wide) {
-    margin-left: 11.6rem;
-    max-width: 640px;
-  }
-
-  &:before {
-    position: absolute;
-    top: -40px;
-    bottom: 0;
-    left: -3px;
-    width: 1px;
-    background-color: #121212;
-    content: '';
-    display: block;
-
-    @include mq(desktop) {
-      top: 4px;
-    }
-  }
-
-  // @include mq(phablet) {
-  //   &:after {
-  //     position: absolute;
-  //     top: -40px;
-  //     bottom: 0;
-  //     right: -48px;
-  //     width: 1px;
-  //     background-color: #121212;
-  //     content: '';
-  //     display: block;
-  //   }
-  // }
-}
-
-.element-image {
-  img {
-    width: 100%;
-    height: auto;
-  }
-}
-
-.element--supporting {
-  @include mq($from: desktop) {
-    margin-left: 2.4rem !important;
-    max-width: 522px !important;
-    width: 17.75rem;
-  }
-
-  @include mq($from: wide) {
-    margin-left: 11.6rem !important;
-    max-width: 640px !important;
-  }
-
-  img {
-    width: 90%;
-    margin-left: 5%;
-    height: auto;
-  }
-}
-
-.element-atom+script+p+figure+p {
-  padding: 0 0;
-  max-width: 640px;
-  position: relative;
-  padding-left: 10px;
-
-  @include mq($from: desktop) {
-    margin-left: 2.4rem;
-    max-width: 522px;
-  }
-
-  @include mq($from: wide) {
-    margin-left: 11.6rem;
-    max-width: 640px;
-  }
-
-  &:before {
-    position: absolute;
-    top: -40px;
-    bottom: 0;
-    left: -3px;
-    width: 1px;
-    background-color: #121212;
-    content: '';
-    display: block;
-  }
-
-  // @include mq(phablet) {
-  //   &:after {
-  //     position: absolute;
-  //     top: -40px;
-  //     bottom: 0;
-  //     right: -48px;
-  //     width: 1px;
-  //     background-color: #121212;
-  //     content: '';
-  //     display: block;
-  //   }
-  // }
-}
-
-ul {
-  margin-left: 15px;
-
-  @include mq(phablet) {
-    margin-left: 20px;
-  }
-}
-
-p+h2,
-figure+script+h2,
-h2+h2,
-ul+h2,
-.element-image+h2 {
-  font-family: "Guardian Headline Full";
-  line-height: 1.1;
-  padding-left: 10px;
-  padding-right: 10px;
-  position: relative;
-  color: #ff4e36;
-  margin-left: 13px;
-
-  @include mq(phablet) {
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left: 18px;
-
-    @include mq(desktop) {
-      &:before {
-        position: absolute;
-        top: -40px;
-        bottom: 0;
-        left: -3px;
-        width: 1px;
-        background-color: #121212;
-        content: '';
+      @include mq(tablet) {
         display: block;
       }
 
+      @include mq(desktop) {
+        top: -431px;
+      }
     }
-
-    // &:after {
-    //   position: absolute;
-    //   top: -40px;
-    //   bottom: 0;
-    //   right: -48px;
-    //   width: 1px;
-    //   background-color: #121212;
-    //   content: '';
-    //   display: block;
-    // }
   }
 
-  @include mq($from: desktop) {
-    margin-left: 2.4rem;
-    max-width: 522px;
-    font-size: 34px;
-  }
-
-  @include mq($from: wide) {
-    margin-left: 11.6rem;
-    max-width: 640px;
-  }
-}
-
-p+h2,
-ul+h2 {
-  border-top: 1px solid #121212;
-  line-height: 1;
-  margin-top: 20px;
-  max-width: 640px;
-
-  @include mq($from: desktop) {
-    margin-top: 0;
-    max-width: 522px;
-  }
-
-  @include mq($from: wide) {
-    max-width: 640px;
-  }
-}
-
-h2+ul {
-  list-style: none;
-
-  @include mq(phablet) {
+  h2 {
+    font-family: "Guardian Titlepiece", "Guardian Headline Full";
+    line-height: 1.1;
     padding-left: 10px;
-  }
-
-  li {
-    margin-top: 10px;
-
-    &:before {
-      float: left;
-      height: 20px;
-      width: 20px;
-      background-color: #ff4e36;
-      border-radius: 50%;
-      content: '';
-      display: block;
-      margin-top: 3px;
-      margin-right: 5px;
-    }
-  }
-}
-
-h2+p {
-  padding-top: 20px;
-}
-
-h2+h2 {
-  font-family: "Guardian Headline Full";
-  font-weight: 200;
-  line-height: 1;
-  margin-bottom: 10px;
-  max-width: 640px;
-}
-
-p,
-p+ul,
-h2+ul {
-  padding: 0 0;
-  max-width: 640px;
-  padding-left: 10px;
-  padding-right: 10px;
-  position: relative;
-
-  @include mq(phablet) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  @include mq($from: desktop) {
-    margin-left: 2.4rem;
-    max-width: 522px;
-    max-width: 522px;
-  }
-
-  @include mq($from: wide) {
-    margin-left: 11.6rem;
+    position: relative;
+    color: #cc0a11;
+    font-size: 60px;
+    font-variant-numeric: lining-nums;
+    border-top: 1px solid #121212;
+    line-height: 1;
+    margin-top: 20px;
     max-width: 640px;
-  }
 
-  &:before {
-    position: absolute;
-    top: -65px;
-    bottom: 0;
-    left: -3px;
-    width: 1px;
-    background-color: #121212;
-    content: '';
-    display: block;
+    @include mq(mobileLandscape) {
+      padding-left: 20px;
+    }
 
-    @include mq(mobileMedium) {
-      top: -41px;
+    @include mq(desktop) {
+      max-width: 480px;
+      font-size: 68px;
+    }
+
+    @include mq(leftCol) {
+      max-width: 560px;
+    }
+
+    @include mq(wide) {
+      max-width: 640px;
     }
   }
 
-  // @include mq(phablet) {
-  //   &:after {
-  //     position: absolute;
-  //     top: -40px;
-  //     bottom: 0;
-  //     right: -48px;
-  //     width: 1px;
-  //     background-color: #121212;
-  //     content: '';
-  //     display: block;
-  //   }
-  // }
+  p {
+    padding: 0 0;
+    max-width: 640px;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 6px;
+    @include mq(mobileLandscape) {
+      padding-left: 20px;
+    }
+    @include mq(desktop) {
+      max-width: 480px;
+    }
+
+    @include mq(leftCol) {
+      max-width: 560px;
+    }
+
+    @include mq(wide) {
+      max-width: 640px;
+    }
+  }
 
   a {
     color: inherit;
@@ -525,13 +377,487 @@ h2+ul {
     &:hover {
       border-bottom: none;
       text-decoration: none;
-      background-color: #FFD600;
+      background-color: #ffd600;
+    }
+  }
+
+  h2 + p {
+    margin-bottom: 40px;
+  }
+
+  figure + h2 {
+    max-width: 1300px;
+  }
+
+  figure + h2 {
+    border-top: none;
+    margin-top: -20px;
+    @include mq(desktop) {
+      border-top: 1px solid #121212;
+      margin-top: 0;
+    }
+    &:nth-child(even) {
+      @include mq(desktop) {
+        border-top: none;
+        margin-top: -10px;
+      }
+    }
+  }
+
+  p + figure {
+    border-top: 1px solid #121212;
+    @include mq(desktop) {
+      border-top: none;
+    }
+    &:nth-child(odd) {
+      @include mq(desktop) {
+        &:before {
+          content: "";
+          position: absolute;
+          height: 1px;
+          width: 500px;
+          top: -4px;
+          left: -10px;
+          background-color: #121212;
+        }
+      }
+      @include mq(leftCol) {
+        &:before {
+          width: 580px;
+          top: 0;
+        }
+      }
+      @include mq(wide) {
+        &:before {
+          width: 660px;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .element-image {
+    width: 100%;
+    padding: 4px 10px;
+    @include mq(desktop) {
+      padding: 0;
+    }
+    @include mq(tablet) {
+      width: 60%;
+    }
+
+    @include mq(desktop) {
+      position: absolute;
+      right: 20px;
+      width: 320px;
+      &:nth-child(odd) {
+        position: relative;
+        margin-left: 30px;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      // @include mq(desktop) {
+      //   &:nth-child(1) {
+      //     margin-top: -360px;
+      //   }
+
+      //   &:nth-child(2) {
+      //     margin-top: -240px;
+      //   }
+      // }
+    }
+    figcaption {
+      display: none;
+    }
+  }
+
+  .content__meta-container {
+    position: relative;
+    margin-left: 0;
+    margin-bottom: 0.75rem;
+    width: auto;
+  }
+
+  .meta__extras {
+    max-width: 640px;
+    margin-left: 10px;
+    @include mq(mobileLandscape) {
+      margin-left: 20px;
+    }
+    @include mq(desktop) {
+      max-width: 480px;
+    }
+
+    @include mq(leftCol) {
+      max-width: 560px;
+    }
+
+    @include mq(wide) {
+      max-width: 640px;
+    }
+    a {
+      border-bottom: none;
+    }
+    .social__action {
+      background-color: transparent !important;
+    }
+    .social-icon--facebook,
+    .social-icon--twitter,
+    .social-icon--email {
+      background-color: #cc0a11;
+      &:hover {
+        background-color: #ab0613;
+      }
     }
   }
 }
 
+//This styles the copy on composer
+// .element-atom + script + p {
+//   padding: 0 0;
+//   max-width: 640px;
+//   position: relative;
+//   padding-left: 10px;
+//   padding-right: 10px;
+//   margin-top: 6px;
+
+//   @include mq(phablet) {
+//     padding-left: 20px;
+//     padding-right: 20px;
+//   }
+
+//   &:first-of-type:first-letter {
+//     font-size: 125px;
+//     font-weight: 200;
+//     font-family: "Guardian Headline Full";
+//     line-height: 80px;
+//     margin-right: -8px;
+//     float: left;
+//     line-height: 80px;
+//     margin-right: 5px;
+//     margin-top: 9px;
+//     float: left;
+//     color: #cc0a11;
+//   }
+
+//   @include mq($from: desktop) {
+//     margin-left: 2.4rem;
+//     max-width: 522px;
+//   }
+
+//   @include mq($from: wide) {
+//     margin-left: 11.6rem;
+//     max-width: 640px;
+//   }
+
+//
+
+//   // @include mq(phablet) {
+//   //   &:after {
+//   //     position: absolute;
+//   //     top: -40px;
+//   //     bottom: 0;
+//   //     right: -48px;
+//   //     width: 1px;
+//   //     background-color: #121212;
+//   //     content: '';
+//   //     display: block;
+//   //   }
+//   // }
+// }
+
+// .element-image {
+//   img {
+//     width: 100%;
+//     height: auto;
+//   }
+// }
+
+// .element--supporting {
+//   @include mq($from: desktop) {
+//     margin-left: 2.4rem !important;
+//     max-width: 522px !important;
+//     width: 17.75rem;
+//   }
+
+//   @include mq($from: wide) {
+//     margin-left: 11.6rem !important;
+//     max-width: 640px !important;
+//   }
+
+//   img {
+//     width: 90%;
+//     margin-left: 5%;
+//     height: auto;
+//   }
+// }
+
+// .element-atom + script + p + figure + p {
+//   padding: 0 0;
+//   max-width: 640px;
+//   position: relative;
+//   padding-left: 10px;
+
+//   @include mq($from: desktop) {
+//     margin-left: 2.4rem;
+//     max-width: 522px;
+//   }
+
+//   @include mq($from: wide) {
+//     margin-left: 11.6rem;
+//     max-width: 640px;
+//   }
+
+//   &:before {
+//     position: absolute;
+//     top: -40px;
+//     bottom: 0;
+//     left: -3px;
+//     width: 1px;
+//     background-color: #121212;
+//     content: "";
+//     display: block;
+//   }
+
+//   // @include mq(phablet) {
+//   //   &:after {
+//   //     position: absolute;
+//   //     top: -40px;
+//   //     bottom: 0;
+//   //     right: -48px;
+//   //     width: 1px;
+//   //     background-color: #121212;
+//   //     content: '';
+//   //     display: block;
+//   //   }
+//   // }
+// }
+
+// ul {
+//   margin-left: 15px;
+
+//   @include mq(phablet) {
+//     margin-left: 20px;
+//   }
+// }
+
+// p + h2,
+// figure + script + h2,
+// h2 + h2,
+// ul + h2,
+// .element-image + h2 {
+//   font-family: "Guardian Titlepiece", "Guardian Headline Full";
+//   line-height: 1.1;
+//   padding-left: 10px;
+//   padding-right: 10px;
+//   position: relative;
+//   color: #cc0a11;
+//   margin-left: 13px;
+
+//   @include mq(phablet) {
+//     padding-left: 20px;
+//     padding-right: 20px;
+//     margin-left: 18px;
+
+//     @include mq(desktop) {
+//       &:before {
+//         position: absolute;
+//         top: -40px;
+//         bottom: 0;
+//         left: -3px;
+//         width: 1px;
+//         background-color: #121212;
+//         content: "";
+//         display: block;
+//       }
+//     }
+
+//     // &:after {
+//     //   position: absolute;
+//     //   top: -40px;
+//     //   bottom: 0;
+//     //   right: -48px;
+//     //   width: 1px;
+//     //   background-color: #121212;
+//     //   content: '';
+//     //   display: block;
+//     // }
+//   }
+
+//   @include mq($from: desktop) {
+//     margin-left: 2.4rem;
+//     max-width: 522px;
+//     font-size: 60px;
+//   }
+
+//   @include mq($from: wide) {
+//     margin-left: 11.6rem;
+//     max-width: 640px;
+//   }
+// }
+
+// p + h2,
+// ul + h2 {
+//   border-top: 1px solid #121212;
+//   line-height: 1;
+//   margin-top: 20px;
+//   max-width: 640px;
+
+//   @include mq($from: desktop) {
+//     margin-top: 0;
+//     max-width: 522px;
+//   }
+
+//   @include mq($from: wide) {
+//     max-width: 640px;
+//   }
+// }
+
+// h2 + ul {
+//   list-style: none;
+
+//   @include mq(phablet) {
+//     padding-left: 10px;
+//   }
+
+//   li {
+//     margin-top: 10px;
+
+//     &:before {
+//       float: left;
+//       height: 20px;
+//       width: 20px;
+//       background-color: #cc0a11;
+//       border-radius: 50%;
+//       content: "";
+//       display: block;
+//       margin-top: 3px;
+//       margin-right: 5px;
+//     }
+//   }
+// }
+
+// h2 + p {
+//   padding-top: 20px;
+// }
+
+// h2 + h2 {
+//   font-family: "Guardian Headline Full";
+//   font-weight: 200;
+//   line-height: 1;
+//   margin-bottom: 10px;
+//   max-width: 640px;
+// }
+
+// p,
+// p + ul,
+// h2 + ul {
+//   padding: 0 0;
+//   max-width: 640px;
+//   padding-left: 10px;
+//   padding-right: 10px;
+//   position: relative;
+
+//   @include mq(phablet) {
+//     padding-left: 20px;
+//     padding-right: 20px;
+//   }
+
+//   @include mq($from: desktop) {
+//     margin-left: 2.4rem;
+//     max-width: 522px;
+//     max-width: 522px;
+//   }
+
+//   @include mq($from: wide) {
+//     margin-left: 11.6rem;
+//     max-width: 640px;
+//   }
+
+//   &:before {
+//     position: absolute;
+//     top: -65px;
+//     bottom: 0;
+//     left: -3px;
+//     width: 1px;
+//     background-color: #121212;
+//     content: "";
+//     display: block;
+
+//     @include mq(mobileMedium) {
+//       top: -41px;
+//     }
+//   }
+
+//   // @include mq(phablet) {
+//   //   &:after {
+//   //     position: absolute;
+//   //     top: -40px;
+//   //     bottom: 0;
+//   //     right: -48px;
+//   //     width: 1px;
+//   //     background-color: #121212;
+//   //     content: '';
+//   //     display: block;
+//   //   }
+//   // }
+
+//   a {
+//     color: inherit;
+//     text-decoration: none;
+//     border-bottom: 1px solid #dcdcdc;
+
+//     &:hover {
+//       border-bottom: none;
+//       text-decoration: none;
+//       background-color: #ffd600;
+//     }
+//   }
+// }
+
+a {
+  word-wrap: break-word;
+}
+
 .ios,
 .android {
+  .money-top {
+    .money-left {
+      h1 {
+        margin-bottom: 0;
+      }
+      h2 {
+        margin-top: 4px;
+      }
+      h3 {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .body-content {
+    .content__dateline {
+      line-height: 1rem;
+      font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial,
+        "Lucida Grande", sans-serif;
+      color: #757575;
+    }
+    h2 {
+      margin-bottom: 0 !important;
+    }
+    p {
+      padding-top: 0 !important;
+    }
+    .element-image {
+      margin-left: 0 !important;
+      a {
+        border-bottom: none !important;
+      }
+    }
+  }
 
   .meta__extras {
     display: none;
@@ -560,46 +886,39 @@ h2+ul {
     }
   }
 
-  figure+script+h2 {
+  figure + script + h2 {
     margin: 0;
   }
 
-  p+h2 {
+  p + h2 {
     margin: 0;
   }
 
-  h2+h2 {
+  h2 + h2 {
     margin: 0;
   }
 
-  h2+p {
+  h2 + p {
     padding-top: 20px;
   }
 }
 
-
 figcaption {
   margin-left: 10px;
-  font-family: "Guardian Text Sans Web",
-    "Helvetica Neue",
-    Helvetica,
-    Arial,
-    "Lucida Grande",
-    sans-serif;
+  font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial,
+    "Lucida Grande", sans-serif;
   color: #767676;
   font-size: 15px;
   margin-top: 10px;
 
   @include mq(tablet) {
     margin-left: 40px;
-
   }
 
   @include mq(desktop) {
     margin-left: 20px;
   }
 }
-
 
 figure.element.element--supporting {
   @include mq(desktop) {
