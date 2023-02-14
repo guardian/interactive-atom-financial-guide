@@ -54,7 +54,7 @@
     "core-js": "^2.6.2",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",
-    "gulp-sass": "^4.1.1",
+    "gulp-sass": "^5.1.0",
     "lodash": "^4.17.21",
     "marked": "^0.8.0",
     "marked-terminal": "^4.0.0",
