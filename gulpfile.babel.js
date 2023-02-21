@@ -4,8 +4,6 @@ import gulp from 'gulp'
 import file from 'gulp-file'
 import gutil from 'gulp-util'
 import s3 from 'gulp-s3-upload';
-import sass from 'gulp-sass'
-import size from 'gulp-size'
 import sourcemaps from 'gulp-sourcemaps'
 import template from 'gulp-template'
 
@@ -15,19 +13,19 @@ import fs from 'fs'
 import inquirer from 'inquirer'
 import rp from 'request-promise-native'
 import runSequence from 'run-sequence'
-import source from 'vinyl-source-stream'
 import named from 'vinyl-named'
-import buffer from 'vinyl-buffer'
 import replace from 'gulp-replace'
 
 import webpack from 'webpack'
 import ws from 'webpack-stream'
+require("@babel/register");
 const debug = require('gulp-debug');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 import marked from 'marked'
 import TerminalRenderer from 'marked-terminal'
 
+const sass = require('gulp-sass')(require('sass'));
 const browser = browserSync.create();
 
 const buildDir = '.build';
